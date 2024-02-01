@@ -5,7 +5,8 @@
           <h4>{{ oneroom[isButton].title }}</h4>
           <p>{{ oneroom[isButton].content }}</p>
           <p>{{ oneroom[isButton].price }}</p>
-          <button @click="isModalOpen = false">닫기</button>
+          <!-- props에서는 데이터 변경 불가 -->
+          <button @click="$emit('closeModal')">닫기</button>
         </div>
       </div>
 </template>

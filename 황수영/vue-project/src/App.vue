@@ -5,26 +5,27 @@
       </div>
 
       <DiscountComponent/>
-      <ModalComponent :oneroom="oneroom" :isButton="isButton" :isModalOpen="isModalOpen"/>
+      <ModalComponent @closeModal="isModalOpen = false" :oneroom="oneroom" :isButton="isButton" :isModalOpen="isModalOpen"/>
+      <CardComponent @openModal="isModalOpen = true; isButton = $event" :oneroom="oneroom" :isButton="isButton" :isModalOpen="isModalOpen"/>
 
       <!-- 상품 리스트 -->
-      <div v-for="(a, i) in oneroom" :key="i">
+      <!-- <div v-for="(a, i) in oneroom" :key="i">
         <img :src="oneroom[i].image" class="room-img">
         <h4 @click="isModalOpen = true; isButton = i">{{oneroom[i].title}}</h4>
         <p>{{oneroom[i].price}}</p>
-      </div>
+      </div> -->
 
       <!-- 모달창 만들기 -->
       <!-- 2. 데이터 상태에 따라 HTML UI을 보여줄지 말지를 Vue문법으로 작성함  -->
      <!-- <div @click="isModalOpen = true" v-if="isModalOpen == false" >모달창 보기 버튼</div> -->
-     <div class="black-bg" v-if="isModalOpen == true"> 
+     <!-- <div class="black-bg" v-if="isModalOpen == true"> 
         <div class="white-bg">
           <h4>{{ oneroom[isButton].title }}</h4>
           <p>{{ oneroom[isButton].content }}</p>
           <p>{{ oneroom[isButton].price }}</p>
           <button @click="isModalOpen = false">닫기</button>
         </div>
-      </div>
+      </div> -->
 
     </div>
 </template>
@@ -33,6 +34,7 @@
 import oneroomData from './assets/oneroom';
 import DiscountComponent from './Discount.vue';
 import ModalComponent from './Modal.vue';
+import CardComponent from './Card.vue';
 
 export default {
   name: 'App',
@@ -56,6 +58,7 @@ export default {
   components: {
     DiscountComponent,
     ModalComponent,
+    CardComponent,
   }
 }
 </script>
