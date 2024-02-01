@@ -5,6 +5,9 @@
       </div>
 
       <DiscountComponent/>
+      <button @click="priceSort()" >가격순정렬</button>
+      <button @click="sortBack()" >되돌리기</button>
+
       <ModalComponent @closeModal="isModalOpen = false" :oneroom="oneroom" :isButton="isButton" :isModalOpen="isModalOpen"/>
       <CardComponent @openModal="isModalOpen = true; isButton = $event" :oneroom="oneroom" :isButton="isButton" :isModalOpen="isModalOpen"/>
 
@@ -40,19 +43,27 @@ export default {
   name: 'App',
   data() {
     return {
+      oneroomOrigin : [...oneroomData],
       oneroom : oneroomData,
       isModalOpen : false, // 1. 현재 모달창의 상태를 데이터로 저장해둡니다.
       menus : ['메뉴1', '메뉴2', '메뉴3'],
       products : ['원룸', '투룸', '쓰리룸'],
       warnCnt : 0,
       isButton : 0,
-    
-
     }
   },
   methods : { // 메소드 추가
     increase() {
       this.warnCnt += 1
+    },
+    priceSort(){
+      // sort는 원본 변경
+      this.oneroom.sort(function(a, b) {
+        return a.price - b.price
+      })
+    },
+    sortBack(){
+      this.oneroom = [...this.oneroomOrigin]
     }
   },
   components: {
