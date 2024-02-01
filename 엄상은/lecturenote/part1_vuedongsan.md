@@ -208,9 +208,9 @@ export default {
 
 ### v-if / v-else
 
-- <div v-if=”조건”></div>
-- <div v-else-if=”조건”></div>
-- <div v-else></div> 도 가능
+- `<div v-if=”조건”></div>`
+- `<div v-else-if=”조건”></div>`
+- `<div v-else></div>` 도 가능
 
 ## 8. component
 
@@ -231,7 +231,7 @@ export default {
         - 둘의 이름이 같다면 축약이 가능함
             - Discount,
     - (3) 쓰기
-        - <Discount />
+        - `<Discount />`
 
 ### 컴포넌트.vue 이름의 규칙
 
