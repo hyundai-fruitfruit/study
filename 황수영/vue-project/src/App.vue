@@ -4,7 +4,8 @@
         <a v-for="(menu, i) in menus" :key="i"> {{ menu }}</a>
       </div>
 
-      <DiscountComponent/>
+      <DiscountComponent v-if="showDiscount == true"/>
+      
       <button @click="priceSort()" >가격순정렬</button>
       <button @click="sortBack()" >되돌리기</button>
 
@@ -39,10 +40,13 @@ import DiscountComponent from './Discount.vue';
 import ModalComponent from './Modal.vue';
 import CardComponent from './Card.vue';
 
+
+
 export default {
   name: 'App',
   data() {
     return {
+      showDiscount : true,
       oneroomOrigin : [...oneroomData],
       oneroom : oneroomData,
       isModalOpen : false, // 1. 현재 모달창의 상태를 데이터로 저장해둡니다.
@@ -66,6 +70,13 @@ export default {
       this.oneroom = [...this.oneroomOrigin]
     }
   },
+
+  mounted() {
+    setTimeout(() => {
+      this.showDiscount = false
+    }, 2000)
+  },
+
   components: {
     DiscountComponent,
     ModalComponent,
