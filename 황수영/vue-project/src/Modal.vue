@@ -7,16 +7,16 @@
           <!-- 사용자 입력 받는 방식들 -->
           <input @input="month = $event.target.value">
           <!-- 기본은 문자이기에 숫자형으로 지정 -->
-          <input v-model.number="month"> 
+          <!-- <input v-model.number="month"> 
           <textarea v-model="month"></textarea>
-          <select v-model="month"></select>
+          <select v-model="month"></select> -->
 
           <p> {{month}} 개월 선택함 : {{ oneroom[isButton].price * month }}</p>
 
           <!-- props에서는 데이터 변경 불가 -->
           <button @click="$emit('closeModal')">닫기</button>
         </div>
-      </div>
+    </div>
 
 </template>
 
@@ -25,7 +25,18 @@ export default {
     name : 'ModalComponent',
     data() {
       return {
-        month : 1
+        month : 1,
+        date : 123
+      }
+    },
+    watch : {
+      month(a) {
+        if (isNaN(a) == true){
+          alert('숫자 입력');
+        }
+        if (a >= 13){
+          alert('12이하로 입력해야 함');
+        }
       }
     },
     props : {
