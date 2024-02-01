@@ -4,16 +4,30 @@
         <div class="white-bg">
           <h4>{{ oneroom[isButton].title }}</h4>
           <p>{{ oneroom[isButton].content }}</p>
-          <p>{{ oneroom[isButton].price }}</p>
+          <!-- 사용자 입력 받는 방식들 -->
+          <input @input="month = $event.target.value">
+          <!-- 기본은 문자이기에 숫자형으로 지정 -->
+          <input v-model.number="month"> 
+          <textarea v-model="month"></textarea>
+          <select v-model="month"></select>
+
+          <p> {{month}} 개월 선택함 : {{ oneroom[isButton].price * month }}</p>
+
           <!-- props에서는 데이터 변경 불가 -->
           <button @click="$emit('closeModal')">닫기</button>
         </div>
       </div>
+
 </template>
 
 <script>
 export default {
     name : 'ModalComponent',
+    data() {
+      return {
+        month : 1
+      }
+    },
     props : {
       oneroom : Array,
       isButton : Number,
