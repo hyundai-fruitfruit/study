@@ -1,4 +1,4 @@
-var oneroom = [{
+export default[{
     id : 0,
     title: "Sinrim station 30 meters away",
     image: "https://codingapple1.github.io/vue/room0.jpg",
@@ -40,5 +40,3 @@ var oneroom = [{
     content: "반지하 원룸입니다. 비올 때 물가끔 새는거 빼면 좋아요",
     price: 370000
   }];
-
-export default oneroom
