@@ -24,13 +24,13 @@ export default {
   },
   watch: {
     month(a) {
-        if (typeof(a) != Number || isNaN(a) == true) {
+        if (isNaN(a) == true) {
             alert("숫자를 입력해주세요");
             this.month = 1;
         }
         else if (a >= 13) {
             alert("13 미만의 숫자를 입력해주세요");
-            a = 1;
+            this.month = 1;
         }
     },
   },
@@ -41,6 +41,12 @@ export default {
   },
   components: {
     Discount: Discount,
+  },
+  updated() {
+    if (this.month == 2) {
+      alert("2개월은 너무 적음. 3개월부터 판매합니다.");
+      this.month = 3;
+    }
   }
 }
 </script>
