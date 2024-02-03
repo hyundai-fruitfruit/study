@@ -30,13 +30,17 @@
       </div>
     </div>
   </nav>
-  <List v-for="(x, i) in posts" :key="i" :post="posts[i]"/>
+
+  <router-link to="/">홈페이지</router-link>
+  <router-link to="/list">리스트페이지</router-link>
+  <router-link to="/detail">디테일페이지</router-link>
+  <router-view :posts="posts"></router-view>
+  
 </template>
 
 <script>
 
 import posts from './data/posts'
-import List from './components/List.vue'
 
 export default {
   name: 'App',
@@ -46,7 +50,6 @@ export default {
     }
   },
   components: {
-    List: List
   },
 }
 </script>

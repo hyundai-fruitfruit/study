@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h5>{{ post.title }}</h5>
-    <p>{{ post.date }}</p>
+  <div v-for="(x, i) in posts" :key="i" >
+    <h5>{{ posts[i].title }}</h5>
+    <p>{{ posts[i].date }}</p>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   name: 'List',
   props: {
-    post: Object
+    posts: Array
   }
 }
 </script>
