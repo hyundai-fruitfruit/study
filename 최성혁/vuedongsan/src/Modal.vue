@@ -20,6 +20,20 @@ export default {
       month : 1,
     }
   },
+  watch : {
+    month(a){
+      if (isNaN(a) == true){
+        alert("문자입력하지마라")
+        this.month = 1
+      }
+    },
+  },
+  updated(){
+    if(this.month == 2){
+      alert("2는안된다고 말했을텐데")
+      this.month = 3
+    }
+  },
   props: {
     원룸들 : Object,
     누른거 : Number,
