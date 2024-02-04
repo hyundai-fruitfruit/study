@@ -1,31 +1,24 @@
 <template>
   <div class="header">
-    <ul class="header-button-left">
+    <ul v-if="step==1||step==2" @click="step--" class="header-button-left">
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step==1" @click="step++">Next</li>
+      <li v-if="step==2" @click="publish">Post</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :posts="posts" />
+  <Container :posts="posts" :step="step" :url="url" @updateContent="myContent=$event"/>
   <button @click="more()">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
-
-  <div v-if="step==0">내용0</div>
-  <div v-if="step==1">내용1</div>
-  <div v-if="step==2">내용2</div>
-  <button @click="step=0">버튼0</button>
-  <button @click="step=1">버튼1</button>
-  <button @click="step=2">버튼2</button>
-
 </template>
 
 <script>
@@ -42,7 +35,9 @@ export default {
     return {
       posts: posts,
       moreCount: 0,
-      step: 0
+      step: 0,
+      url: "",
+      myContent: "",
     }
   },
   methods: {
@@ -62,6 +57,25 @@ export default {
         })
       }
       this.moreCount++;
+    },
+    upload(e) {
+      let file = e.target.files;
+      this.url = URL.createObjectURL(file[0]);
+      this.step++;
+    },
+    publish() {
+      var myPost = {
+        name: "tori",
+        userImage: this.url,
+        postImage: this.url,
+        likes: 0,
+        date: "Feb 3",
+        liked: false,
+        content: this.myContent,
+        filter: "perpetua"
+      };
+      this.posts.unshift(myPost);
+      this.step = 0;
     }
   }
 }
