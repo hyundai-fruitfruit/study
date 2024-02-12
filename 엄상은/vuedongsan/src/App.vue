@@ -48,7 +48,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showDiscount = false;
-    }, 2000);
+    }, 30000);
   },
   methods: {
     increase(x) {
